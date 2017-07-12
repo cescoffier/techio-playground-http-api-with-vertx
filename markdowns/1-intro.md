@@ -6,9 +6,9 @@ Let's say you heard about [Eclipse Vert.x](http://vertx.io) and you want to star
 * how to create a HTTP server
 * how to produce JSON responses
 * how to get parameters
-* what's a event loop
+* what's an event loop
 
-It's going to take 10-15 minutes to complete, so better start now!
+It's going to take 10 minutes to complete, so better start now!
 
 ## What's Vert.x
 
