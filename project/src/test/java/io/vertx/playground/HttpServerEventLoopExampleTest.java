@@ -6,7 +6,7 @@ public class HttpServerEventLoopExampleTest {
 
     @Test
     public void test() {
-     HttpServerExample.main();   
+     HttpServerEventLoopExample.main();   
 
      TestUtils.awaitForServerStartup();
      for (int i = 0; i < 10; i++) {
