@@ -1,5 +1,6 @@
 package io.vertx.playground;
 
+import org.junit.After;
 import org.junit.Test;
 
 public class HttpServerEventLoopExampleTest {
@@ -13,6 +14,11 @@ public class HttpServerEventLoopExampleTest {
          System.out.println("Invocation " + i + " :");
          TestUtils.invoke();
      }
+    }
+
+    @After
+    public void tearDown() { 
+        TestUtils.shutdown();
     }
 
 }

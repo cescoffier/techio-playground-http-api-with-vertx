@@ -14,6 +14,7 @@ import static org.hamcrest.core.Is.is;
 
 public class TestUtils {
 
+    protected static Vertx vertx = Vertx.vertx();
     public static void awaitForServerStartup() {
         await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> connect());
         System.out.println("Server started...");
@@ -24,7 +25,6 @@ public class TestUtils {
     }
     public static void invoke(String suffix) {
         AtomicBoolean called = new AtomicBoolean();
-        Vertx vertx = Vertx.vertx();
         vertx.createHttpClient()
             .get(8080, "localhost", "/" + suffix)
             .handler(resp -> {
@@ -43,5 +43,12 @@ public class TestUtils {
         URLConnection connection = url.openConnection();
         assert connection != null;
         assert connection instanceof HttpURLConnection;
+    }
+
+    public static void shutdown() {
+        if (vertx != null) {
+            vertx.close();
+            vertx = null;
+        }
     }
 }
