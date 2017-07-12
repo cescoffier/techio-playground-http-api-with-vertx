@@ -16,6 +16,7 @@ public class TestUtils {
 
     public static void awaitForServerStartup() {
         await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> connect());
+        System.out.println("Server started...");
     }
 
     public static void invoke() {
@@ -32,7 +33,8 @@ public class TestUtils {
                     System.out.println("Body >> " + buffer.toString());
                     called.set(true);
                 });
-            });
+            })
+            .end();
         await().untilAtomic(called, is(true));    
 	}
 
