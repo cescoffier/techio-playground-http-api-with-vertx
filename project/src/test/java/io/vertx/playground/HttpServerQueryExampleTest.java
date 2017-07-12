@@ -6,7 +6,7 @@ public class HttpServerQueryExampleTest {
 
     @Test
     public void test() {
-     HttpServerExample.main();   
+     HttpServerQueryExample.main();   
 
      TestUtils.awaitForServerStartup();
      System.out.println("Invocation without parameter (http://localhost:8080)");
