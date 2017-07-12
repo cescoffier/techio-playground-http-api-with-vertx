@@ -11,6 +11,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<vertx.version>3.4.2</vertx.version>
 	</properties>
 
 	<dependencies>
@@ -20,6 +22,17 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+		    <groupId>io.vertx</groupId>
+		    <artifactId>vertx-core</artifactId>
+		    <version>${vertx.version}</version>
+        </dependency>   
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>3.0.0</version>
+            <scope>test</scope>
+        </dependency> 
 	</dependencies>
 
 	<build>
@@ -31,6 +44,7 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+                    <showWarnings>false</showWarnings>
 				</configuration>
 			</plugin>
 		</plugins>
