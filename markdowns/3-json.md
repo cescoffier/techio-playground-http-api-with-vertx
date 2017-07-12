@@ -15,5 +15,5 @@ We are going to use this second approach to return something like:
 
 This object can be easily created using: `new JsonObject().put("message", "hello")`. Then we just need to encode this JSON structure into the HTTP response:
 
-@[Producing JSON]({"stubs": ["src/main/java/io/vertx/playground/HttpServerJsonExample.java"], "command": "io.vertx.playground.HttpServerExampleTest#test"})
+@[Producing JSON]({"stubs": ["src/main/java/io/vertx/playground/HttpServerJsonExample.java"], "command": "io.vertx.playground.HttpServerJsonExampleTest#test"})
 
