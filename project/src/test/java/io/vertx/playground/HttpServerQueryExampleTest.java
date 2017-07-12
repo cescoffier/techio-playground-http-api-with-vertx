@@ -2,7 +2,7 @@ package io.vertx.playground;
 
 import org.junit.Test;
 
-public class HttpServerExampleTest {
+public class HttpServerQueryExampleTest {
 
     @Test
     public void test() {
