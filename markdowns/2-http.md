@@ -12,7 +12,7 @@ Ok, now that we have our `vertx` instance, let's create a HTTP server. This is f
 
 Running this code also call the server, so you can see what's returned by the server.
 
-Let's look at the server creation. We attach a request handler. a `Handler` is a method taking as parameter an event (here the HTTP request) and reacting to it (here we write the message to the response). A `Handler` does not _return_ a result, it provides its result in an asynchronous way. For instance, in our example, writing the HTTP response is handled asynchronously by Vert.x. 
+Let's look at the server creation. We attach a request handler. A `Handler` is a method taking as parameter an event (here the HTTP request) and reacting to it (here we write the message to the response). A `Handler` does not _return_ a result, it provides its result in an asynchronous way. For instance, in our example, writing the HTTP response is handled asynchronously by Vert.x. 
 
 The request handler is called for each incoming HTTP request. We start seeing emerging the reactive flavor of this application: for every request, we react. 
 
