@@ -4,6 +4,8 @@ import static org.awaitility.Awaitility.await;
 
 
 import io.vertx.core.Vertx;
+
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -15,14 +17,28 @@ import static org.hamcrest.core.Is.is;
 public class TestUtils {
 
     protected static Vertx vertx = Vertx.vertx();
+    private static VertxGateway gateway;
+
     public static void awaitForServerStartup() {
-        await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> connect());
+        await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> connect(8080));
         System.out.println("Server started...");
     }
 
     public static void invoke() {
         invoke("");
     }
+
+    public static void viewer(String path) {
+        gateway = new VertxGateway(vertx, 8080);
+        await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> connect(9000));
+
+        try {
+            new ProcessBuilder("open --port 9000 assets/" + path).start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void invoke(String suffix) {
         AtomicBoolean called = new AtomicBoolean();
         vertx.createHttpClient()
@@ -38,14 +54,17 @@ public class TestUtils {
         await().untilAtomic(called, is(true));    
 	}
 
-	public static void connect() throws Exception {
-        URL url = new URL("http://localhost:8080");
+	public static void connect(int port) throws Exception {
+        URL url = new URL("http://localhost" + port);
         URLConnection connection = url.openConnection();
         assert connection != null;
         assert connection instanceof HttpURLConnection;
     }
 
     public static void shutdown() {
+        if (gateway != null) {
+            gateway.close();
+        }
         if (vertx != null) {
             vertx.close();
             vertx = null;

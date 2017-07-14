@@ -10,8 +10,7 @@ public class HttpServerExampleTest {
      HttpServerExample.main();   
 
      TestUtils.awaitForServerStartup();
-     TestUtils.invoke();
-     
+     TestUtils.viewer("2-invocation.html");
     }
 
     @After
