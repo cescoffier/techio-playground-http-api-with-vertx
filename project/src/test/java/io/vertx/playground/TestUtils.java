@@ -32,7 +32,7 @@ public class TestUtils {
         await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> connect(9000));
         
         System.out.println("TECHIO> message --channel \"out\" opening assets/" + path + " on  port " + 9000);
-        System.out.println("TECHIO> open --port 9000 /");
+        System.out.println("TECHIO> open --port 9000 foo");
     }
 
     public static void invoke(String suffix) {
