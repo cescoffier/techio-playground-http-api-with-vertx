@@ -36,6 +36,7 @@ public class VertxGateway {
 
         router.route().handler(BodyHandler.create());
         router.post("/gateway").handler(this::delegate);
+        router.get("ready").handler(rc -> rc.response().end("OK"));
 
         router.route().handler(rc -> {
             Log.out("Got request: <blue>%s</blue> <red>%s</red>", rc.request().rawMethod(), rc.request().path());

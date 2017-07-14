@@ -1,6 +1,7 @@
 package io.vertx.playground;
 
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import io.vertx.core.Vertx;
 
 import java.net.HttpURLConnection;
@@ -29,7 +30,11 @@ public class TestUtils {
 
     public static void viewer(String path) throws Exception {
         gateway = new VertxGateway(vertx, 8080);
-        await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> connect(9000));
+
+        await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> {
+            Response response = RestAssured.get("http://localhost:9000/ready").andReturn();
+            assert response.getStatusCode() == 200;
+        });
         
         System.out.println("TECHIO> message --channel \"out\" opening assets/" + path + " on  port " + 9000);
         System.out.println("TECHIO> open --port 9000 assets/" + path);
