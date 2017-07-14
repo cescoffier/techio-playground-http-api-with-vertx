@@ -18,6 +18,7 @@
         p.result {
             border-radius: 5px;
             padding: 10px;
+            font-family: monospace;
         }
     </style>
 </head>
@@ -66,9 +67,9 @@
                     content = "<strong>Status:</strong> " + res["status-code"] + " "
                         + res["status-message"] + "<br/><strong>Content:</strong><br/>" + res.body;
                     if (res["status-code"] < 400) {
-                        $("#result").html("<p class='bg-success result'><code>" + content + "</code></p>");
+                        $("#result").html("<p class='bg-success result'>" + content + "</p>");
                     } else {
-                        $("#result").html("<p class='bg-warning result'><code>" + content + "</code></p>");
+                        $("#result").html("<p class='bg-warning result'>" + content + "</p>");
                     }
                 } else {
                     content = res["error"] + ": " + res["reason"];
