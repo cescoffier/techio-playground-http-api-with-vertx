@@ -16,6 +16,7 @@ import io.vertx.ext.web.client.WebClient;
 import io.vertx.ext.web.client.WebClientOptions;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.StaticHandler;
+import io.vertx.playground.techio.Log;
 
 import java.util.Objects;
 
@@ -37,7 +38,7 @@ public class VertxGateway {
         router.post("/gateway").handler(this::delegate);
 
         router.route().handler(rc -> {
-            Log.out("Got request: " + rc.request().rawMethod() + " " + rc.request().path());
+            Log.out("Got request: <blue>%s</blue> <red>%s</red>", rc.request().rawMethod(), rc.request().path());
             rc.next();
         });
 
@@ -46,7 +47,7 @@ public class VertxGateway {
         this.vertx.createHttpServer()
             .requestHandler(router::accept)
             .listen(9000, ar -> {
-                Log.out("Gateway ready on port 9000.");
+                Log.out("Gateway ready on port <blue>%d</blue>", ar.result().actualPort());
             });
     }
 

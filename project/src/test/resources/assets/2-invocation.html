@@ -38,13 +38,18 @@
 
     function invoke(e) {
         // No param
-
+        var req = {
+          path : "/",
+          method : "GET"
+        };
+        
         $.ajax({
             dataType: "json",
             method: "POST",
             url: "/gateway",
             cache: false,
-            data: {}
+            contentType: "application/json; charset=UTF-8",
+            data: Json.stringify(req)
         })
             .done(function(res) {
                 var content = "";
