@@ -1,8 +1,10 @@
 package io.vertx.playground;
 
+import io.restassured.RestAssured;
 import io.vertx.core.Vertx;
 
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.concurrent.TimeUnit;
@@ -25,9 +27,12 @@ public class TestUtils {
         invoke("");
     }
 
-    public static void viewer(String path) {
+    public static void viewer(String path) throws MalformedURLException {
         gateway = new VertxGateway(vertx, 8080);
         await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> connect(9000));
+
+        String s = RestAssured.get(new URL("http://localhost:9000/assets/2-invocation.html")).asString();
+        System.out.println(s);
 
         System.out.println("TECHIO> message --channel \"out'\" hello world!");
         System.out.println("TECHIO> message --channel \"out'\" opening assets/" + path + " on  port " + 9000);
