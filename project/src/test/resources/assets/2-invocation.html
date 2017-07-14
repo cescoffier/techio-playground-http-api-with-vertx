@@ -16,8 +16,8 @@
             margin-top: 10px;
         }
         p.result {
-            border-radius: 25px;
-            padding: 5px;
+            border-radius: 5px;
+            padding: 10px;
         }
     </style>
 </head>
@@ -65,9 +65,9 @@
                 if (res.success) {
                     content = res["status-code"] + " " + res["status-message"] + "<br/>" + res.body;
                     if (res["status-code"] < 400) {
-                        $("#result").html("<p class='bg-success result'>" + content + "</p>");
+                        $("#result").html("<p class='bg-success result'><code>" + content + "</code></p>");
                     } else {
-                        $("#result").html("<p class='bg-warning result'>" + content + "</p>");
+                        $("#result").html("<p class='bg-warning result'><code>" + content + "</code></p>");
                     }
                 } else {
                     content = res["error"] + ": " + res["reason"];
