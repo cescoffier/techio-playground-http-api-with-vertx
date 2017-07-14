@@ -40,6 +40,7 @@ public class TestUtils {
         System.out.println("TECHIO> open --port 9000 assets/" + path);
 
         Thread.sleep(1000 * 60 * 2);
+        System.out.println("<red>Stopping gateway</red>");
     }
 
     public static void invoke(String suffix) {
