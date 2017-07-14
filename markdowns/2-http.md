@@ -1,6 +1,6 @@
 ## Create a HTTP server
 
-Enough taking, time for action... First we need an instance of Vert.x. You can build one using `Vertx.vertx()`:
+Enough talking, time for action... First we need an instance of Vert.x. You can build one using `Vertx.vertx()`:
 
 @[Vert.x instance creation]({"stubs": ["src/main/java/io/vertx/playground/VertxCreationExample.java"], "command": "io.vertx.playground.VertxCreationExampleTest#test"})
 
