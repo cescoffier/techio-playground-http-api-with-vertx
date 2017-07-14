@@ -36,6 +36,11 @@ public class VertxGateway {
         router.route().handler(BodyHandler.create());
         router.post("/gateway").handler(this::delegate);
 
+        router.route().handler(rc -> {
+            Log.out("Got request: " + rc.request().rawMethod() + " " + rc.request().path());
+            rc.next();
+        });
+
         router.get("/assets/*").handler(StaticHandler.create("assets"));
 
         this.vertx.createHttpServer()
