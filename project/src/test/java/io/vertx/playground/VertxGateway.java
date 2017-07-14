@@ -46,7 +46,7 @@ public class VertxGateway {
         this.vertx.createHttpServer()
             .requestHandler(router::accept)
             .listen(9000, ar -> {
-                Log.out("Gateway ready on port 9000, " + ar.succeeded());
+                Log.out("Gateway ready on port 9000.");
             });
     }
 

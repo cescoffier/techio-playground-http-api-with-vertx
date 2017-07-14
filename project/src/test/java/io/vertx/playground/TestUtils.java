@@ -31,9 +31,8 @@ public class TestUtils {
         gateway = new VertxGateway(vertx, 8080);
         await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> connect(9000));
         
-        System.out.println("TECHIO> message --channel \"out\" hello world!");
         System.out.println("TECHIO> message --channel \"out\" opening assets/" + path + " on  port " + 9000);
-        System.out.println("TECHIO> open --port 9000 assets/" + path);
+        System.out.println("TECHIO> open --port 9000 /project/target/test-classes/assets/" + path);
     }
 
     public static void invoke(String suffix) {
