@@ -32,7 +32,7 @@ public class TestUtils {
         gateway = new VertxGateway(vertx, 8080);
 
         await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> {
-            Response response = RestAssured.get("http://localhost/ready").andReturn();
+            Response response = RestAssured.get("http://localhost:9000/ready").andReturn();
             assert response.getStatusCode() == 200;
         });
         

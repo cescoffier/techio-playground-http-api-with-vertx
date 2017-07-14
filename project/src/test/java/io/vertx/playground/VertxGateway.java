@@ -49,7 +49,7 @@ public class VertxGateway {
 
         this.vertx.createHttpServer()
             .requestHandler(router::accept)
-            .listen(80, ar -> Log.out("Gateway ready on port <blue>%d</blue>", ar.result().actualPort()));
+            .listen(9000, ar -> Log.out("Gateway ready on port <blue>%d</blue>", ar.result().actualPort()));
     }
 
     private void delegate(RoutingContext rc) {
