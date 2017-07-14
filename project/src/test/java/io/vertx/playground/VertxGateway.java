@@ -79,7 +79,7 @@ public class VertxGateway {
                 Buffer res = resp.result().body();
                 JsonObject payload = new JsonObject()
                     .put("success", true)
-                    .put("body", res)
+                    .put("body", res.toString())
                     .put("status-code", resp.result().statusCode())
                     .put("status-message", resp.result().statusMessage())
                     .put("http-version", resp.result().version())
