@@ -15,6 +15,7 @@ import io.vertx.ext.web.client.HttpResponse;
 import io.vertx.ext.web.client.WebClient;
 import io.vertx.ext.web.client.WebClientOptions;
 import io.vertx.ext.web.handler.BodyHandler;
+import io.vertx.ext.web.handler.CorsHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 import io.vertx.playground.techio.Log;
 
@@ -35,6 +36,7 @@ public class VertxGateway {
         Router router = Router.router(vertx);
 
         router.route().handler(BodyHandler.create());
+        router.route().handler(CorsHandler.create("*"));
         router.post("/gateway").handler(this::delegate);
         router.get("/ready").handler(rc -> rc.response().end("OK"));
 
@@ -47,9 +49,7 @@ public class VertxGateway {
 
         this.vertx.createHttpServer()
             .requestHandler(router::accept)
-            .listen(9000, ar -> {
-                Log.out("Gateway ready on port <blue>%d</blue>", ar.result().actualPort());
-            });
+            .listen(9000, ar -> Log.out("Gateway ready on port <blue>%d</blue>", ar.result().actualPort()));
     }
 
     private void delegate(RoutingContext rc) {

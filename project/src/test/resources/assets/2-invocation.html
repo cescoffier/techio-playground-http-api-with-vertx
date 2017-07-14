@@ -46,7 +46,10 @@
         $.ajax({
             dataType: "json",
             method: "POST",
-            url: "/gateway",
+            url: "http://localhost:9000/gateway",
+//            headers: {
+//              "Access-Control-Request-Headers": "x-requested-with"
+//            },
             cache: false,
             contentType: "application/json; charset=UTF-8",
             data: JSON.stringify(req)
