@@ -31,13 +31,8 @@ public class TestUtils {
     public static void viewer(String path) {
         gateway = new VertxGateway(vertx, 8080);
         await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> connect(9000));
-
-        try {
-            new ProcessBuilder()
-                .command("open", "--port", "9000", "assets/" + path).start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        
+        System.out.println("TECHIO> open --port 9000 assets/" + path);
     }
 
     public static void invoke(String suffix) {
