@@ -46,9 +46,6 @@
             dataType: "json",
             method: "POST",
             url: "https://" + window.location.host + "/gateway",
-//            headers: {
-//              "Access-Control-Request-Headers": "x-requested-with"
-//            },
             cache: false,
             contentType: "application/json; charset=UTF-8",
             data: JSON.stringify(req)
@@ -58,31 +55,24 @@
                 if (res.success) {
                     content = res["status-code"] + " " + res["status-message"] + "<br/>" + res.body;
                     if (res["status-code"] < 400) {
-                        $("#id").html("<p class='bg-success'>" + content + "</p>");
+                        $("#result").html("<p class='bg-success'>" + content + "</p>");
                     } else {
-                        $("#id").html("<p class='bg-warning'>" + content + "</p>");
+                        $("#result").html("<p class='bg-warning'>" + content + "</p>");
                     }
                 } else {
                     content = res["error"] + ": " + res["reason"];
-                    $("#id").html("<p class='bg-danger'>" + content + "</p>");
+                    $("#result").html("<p class='bg-danger'>" + content + "</p>");
                 }
             })
             .fail(function(jqXHR, textStatus) {
-                $("#id").html("<p class='bg-danger'>Gateway invocation failed with status: " + textStatus + "</p>");
+                $("#result").html("<p class='bg-danger'>Gateway invocation failed with status: " + textStatus + "</p>");
             });
 
         e.preventDefault();
     }
 
-    function setUpButtonHandler() {
-        $("#invoke").click(invoke);
-    }
-
     $( document ).ready(function() {
-        setUpButtonHandler();
-
-        console.log("from iframe: " + window.location.host);
-        console.dir(window.location);
+        $("#invoke").click(invoke);
     });
 
 </script>
