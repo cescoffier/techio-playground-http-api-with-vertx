@@ -4,6 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.vertx.core.Vertx;
 import io.vertx.playground.techio.Log;
+import io.vertx.playground.techio.Techio;
 
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -34,15 +35,13 @@ public class TestUtils {
 
         await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> {
             // TODO it would be interesting at this point to get the external url.
-            System.getenv().forEach((k,v) -> Log.out(k + " : " + v));
             Response response = RestAssured.get("http://localhost:9000/ready").andReturn();
             assert response.getStatusCode() == 200;
         });
-        
-        System.out.println("TECHIO> message --channel \"out\" opening assets/" + path + " on  port " + 80);
-        System.out.println("TECHIO> open --port 9000 assets/" + path);
-        System.out.println("TECHIO> success true");
-        
+
+        Techio.open(9000, "assets/" + path);
+        Techio.success(true);
+
         Thread.sleep(1000 * 60 * 2);
         
         Log.out("<red>Stopping gateway</red>");
