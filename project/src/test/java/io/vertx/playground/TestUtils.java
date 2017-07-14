@@ -1,17 +1,14 @@
 package io.vertx.playground;
 
-import static org.awaitility.Awaitility.await;
-
-
 import io.vertx.core.Vertx;
 
-import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static org.awaitility.Awaitility.await;
 import static org.hamcrest.core.Is.is;
 
 public class TestUtils {
@@ -31,7 +28,9 @@ public class TestUtils {
     public static void viewer(String path) {
         gateway = new VertxGateway(vertx, 8080);
         await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> connect(9000));
-        
+
+        System.out.println("TECHIO> message --channel \"out'\" hello world!");
+        System.out.println("TECHIO> message --channel \"out'\" opening assets/" + path + " on  port " + 9000);
         System.out.println("TECHIO> open --port 9000 assets/" + path);
     }
 
@@ -47,10 +46,10 @@ public class TestUtils {
                 });
             })
             .end();
-        await().untilAtomic(called, is(true));    
-	}
+        await().untilAtomic(called, is(true));
+    }
 
-	public static void connect(int port) throws Exception {
+    public static void connect(int port) throws Exception {
         URL url = new URL("http://localhost" + port);
         URLConnection connection = url.openConnection();
         assert connection != null;
