@@ -41,7 +41,8 @@ public class TestUtils {
         
         System.out.println("TECHIO> message --channel \"out\" opening assets/" + path + " on  port " + 80);
         System.out.println("TECHIO> open --port 9000 assets/" + path);
-
+        System.out.println("TECHIO> success true");
+        
         Thread.sleep(1000 * 60 * 2);
         
         Log.out("<red>Stopping gateway</red>");
