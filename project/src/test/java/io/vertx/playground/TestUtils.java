@@ -32,11 +32,11 @@ public class TestUtils {
         gateway = new VertxGateway(vertx, 8080);
 
         await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> {
-            Response response = RestAssured.get("http://localhost:9000/ready").andReturn();
+            Response response = RestAssured.get("http://localhost/ready").andReturn();
             assert response.getStatusCode() == 200;
         });
         
-        System.out.println("TECHIO> message --channel \"out\" opening assets/" + path + " on  port " + 9000);
+        System.out.println("TECHIO> message --channel \"out\" opening assets/" + path + " on  port " + 80);
         System.out.println("TECHIO> open --port 9000 assets/" + path);
 
         Thread.sleep(1000 * 60 * 2);
