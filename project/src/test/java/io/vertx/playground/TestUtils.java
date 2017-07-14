@@ -33,7 +33,8 @@ public class TestUtils {
         await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> connect(9000));
 
         try {
-            new ProcessBuilder("open --port 9000 assets/" + path).start();
+            new ProcessBuilder()
+                .command("open", "--port", "9000", "assets/" + path).start();
         } catch (IOException e) {
             e.printStackTrace();
         }
