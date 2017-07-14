@@ -34,8 +34,8 @@ public class TestUtils {
         String s = RestAssured.get(new URL("http://localhost:9000/assets/2-invocation.html")).asString();
         System.out.println(s);
 
-        System.out.println("TECHIO> message --channel \"out'\" hello world!");
-        System.out.println("TECHIO> message --channel \"out'\" opening assets/" + path + " on  port " + 9000);
+        System.out.println("TECHIO> message --channel \"out\" hello world!");
+        System.out.println("TECHIO> message --channel \"out\" opening assets/" + path + " on  port " + 9000);
         System.out.println("TECHIO> open --port 9000 assets/" + path);
     }
 
