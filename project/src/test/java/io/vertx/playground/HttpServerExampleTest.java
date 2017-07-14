@@ -8,7 +8,7 @@ import java.net.MalformedURLException;
 public class HttpServerExampleTest {
 
     @Test
-    public void test() throws MalformedURLException {
+    public void test() throws Exception {
      HttpServerExample.main();   
 
      TestUtils.awaitForServerStartup();

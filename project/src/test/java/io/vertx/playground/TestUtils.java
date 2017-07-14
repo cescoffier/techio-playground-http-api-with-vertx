@@ -27,12 +27,14 @@ public class TestUtils {
         invoke("");
     }
 
-    public static void viewer(String path) throws MalformedURLException {
+    public static void viewer(String path) throws Exception {
         gateway = new VertxGateway(vertx, 8080);
         await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> connect(9000));
         
         System.out.println("TECHIO> message --channel \"out\" opening assets/" + path + " on  port " + 9000);
-        System.out.println("TECHIO> open --port 9000 foo");
+        System.out.println("TECHIO> open --port 9000 assets/" + path);
+
+        Thread.sleep(1000 * 60 * 2);
     }
 
     public static void invoke(String suffix) {
