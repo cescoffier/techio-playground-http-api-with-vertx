@@ -3,6 +3,7 @@ package io.vertx.playground;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.vertx.core.Vertx;
+import io.vertx.playground.techio.Log;
 
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -32,6 +33,8 @@ public class TestUtils {
         gateway = new VertxGateway(vertx, 8080);
 
         await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> {
+            // TODO it would be interesting at this point to get the external url.
+            System.getenv().forEach((k,v) -> Log.out(k + " : " + v));
             Response response = RestAssured.get("http://localhost:9000/ready").andReturn();
             assert response.getStatusCode() == 200;
         });
@@ -40,7 +43,8 @@ public class TestUtils {
         System.out.println("TECHIO> open --port 9000 assets/" + path);
 
         Thread.sleep(1000 * 60 * 2);
-        System.out.println("<red>Stopping gateway</red>");
+        
+        Log.out("<red>Stopping gateway</red>");
     }
 
     public static void invoke(String suffix) {

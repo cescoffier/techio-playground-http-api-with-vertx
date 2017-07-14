@@ -14,10 +14,6 @@ public class Log {
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
-    
-    public static void out(String msg) {
-        System.out.println("TECHIO> message --channel \"out\" " + msg);
-    }
 
     public static void out(String msg, Object... params) {
         String colored = msg
