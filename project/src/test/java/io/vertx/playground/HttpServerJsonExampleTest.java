@@ -6,12 +6,12 @@ import org.junit.Test;
 public class HttpServerJsonExampleTest {
 
     @Test
-    public void test() {
+    public void test() throws Exception {
      HttpServerJsonExample.main();   
 
      TestUtils.awaitForServerStartup();
-     TestUtils.invoke();
-     
+     TestUtils.viewer("2-invocation.html");
+
     }
 
     @After

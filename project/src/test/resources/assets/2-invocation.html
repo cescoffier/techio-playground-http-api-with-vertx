@@ -15,6 +15,7 @@
         #result {
             margin-top: 10px;
         }
+
         p.result {
             border-radius: 5px;
             padding: 10px;
@@ -29,7 +30,7 @@
     <p class="lead">
         Click on the button to invoke the server.
     </p>
-    
+
     <button id="invoke" type="button" class="btn btn-lg btn-info">Invoke the server</button>
 
     <div id="result">
@@ -42,50 +43,9 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script>
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 
-    function invoke(e) {
-        // No param
-        var req = {
-          path : "/",
-          method : "GET"
-        };
-        
-        $.ajax({
-            dataType: "json",
-            method: "POST",
-            url: "https://" + window.location.host + "/gateway",
-            cache: false,
-            contentType: "application/json; charset=UTF-8",
-            data: JSON.stringify(req)
-        })
-            .done(function(res) {
-                var content = "";
-                if (res.success) {
-                    content = "<strong>Status:</strong> " + res["status-code"] + " "
-                        + res["status-message"] + "<br/><strong>Content:</strong><br/>" + res.body;
-                    if (res["status-code"] < 400) {
-                        $("#result").html("<p class='bg-success result'>" + content + "</p>");
-                    } else {
-                        $("#result").html("<p class='bg-warning result'>" + content + "</p>");
-                    }
-                } else {
-                    content = res["error"] + ": " + res["reason"];
-                    $("#result").html("<p class='bg-danger result'>" + content + "</p>");
-                }
-            })
-            .fail(function(jqXHR, textStatus) {
-                $("#result").html("<p class='bg-danger result'>Gateway invocation failed with status: " + textStatus +
-                    "</p>");
-            });
+<script  src = "gateway-client.js" ></script>
 
-        e.preventDefault();
-    }
-
-    $( document ).ready(function() {
-        $("#invoke").click(invoke);
-    });
-
-</script>
-</html>
+</html >
