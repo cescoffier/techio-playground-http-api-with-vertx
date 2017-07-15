@@ -16,7 +16,7 @@ public class HttpServerEventLoopExample {
                 .put("message", message)
                 .put("thread", Thread.currentThread().getName());
            req.response()
-                .putHeader("content-type", "application/json; charset=UTF8")           
+                .putHeader("Content-Type", "application/json; charset=UTF8")
                 .end(json.encodePrettily());
         })
         .listen(8080);

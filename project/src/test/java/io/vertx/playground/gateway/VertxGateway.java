@@ -1,4 +1,4 @@
-package io.vertx.playground;
+package io.vertx.playground.gateway;
 
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
@@ -78,8 +78,6 @@ public class VertxGateway {
 
         HttpRequest<Buffer> request = client.request(HttpMethod.valueOf(method), path
             + (queryString == null ? "" : "?" + queryString));
-
-        System.out.println("QS: " + queryString);
 
         Handler<AsyncResult<HttpResponse<Buffer>>> handler = (resp -> {
             HttpServerResponse response = rc.response();

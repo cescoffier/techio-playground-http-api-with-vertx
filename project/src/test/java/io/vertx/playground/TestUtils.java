@@ -3,18 +3,16 @@ package io.vertx.playground;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.vertx.core.Vertx;
+import io.vertx.playground.gateway.VertxGateway;
 import io.vertx.playground.techio.Log;
 import io.vertx.playground.techio.Techio;
 
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.awaitility.Awaitility.await;
-import static org.hamcrest.core.Is.is;
 
 public class TestUtils {
 
@@ -24,10 +22,6 @@ public class TestUtils {
     public static void awaitForServerStartup() {
         await().atMost(5, TimeUnit.SECONDS).catchUncaughtExceptions().untilAsserted(() -> connect(8080));
         System.out.println("Server started...");
-    }
-
-    public static void invoke() {
-        invoke("");
     }
 
     public static void viewer(String path) throws Exception {
@@ -44,22 +38,7 @@ public class TestUtils {
 
         Thread.sleep(1000 * 60 * 2);
         
-        Log.out("<red>Stopping gateway</red>");
-    }
-
-    public static void invoke(String suffix) {
-        AtomicBoolean called = new AtomicBoolean();
-        vertx.createHttpClient()
-            .get(8080, "localhost", "/" + suffix)
-            .handler(resp -> {
-                System.out.println("HTTP Response >> " + resp.statusMessage());
-                resp.bodyHandler(buffer -> {
-                    System.out.println("Body >> " + buffer.toString());
-                    called.set(true);
-                });
-            })
-            .end();
-        await().untilAtomic(called, is(true));
+        Log.out("<red>Stopping the gateway</red>");
     }
 
     public static void connect(int port) throws Exception {

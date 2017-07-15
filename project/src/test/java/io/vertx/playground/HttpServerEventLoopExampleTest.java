@@ -6,18 +6,15 @@ import org.junit.Test;
 public class HttpServerEventLoopExampleTest {
 
     @Test
-    public void test() {
-     HttpServerEventLoopExample.main();   
+    public void test() throws Exception {
+        HttpServerEventLoopExample.main();
 
-     TestUtils.awaitForServerStartup();
-     for (int i = 0; i < 5; i++) {
-         System.out.println("Invocation " + i + " :");
-         TestUtils.invoke();
-     }
+        TestUtils.awaitForServerStartup();
+        TestUtils.viewer("2-invocation.html");
     }
 
     @After
-    public void tearDown() { 
+    public void tearDown() {
         TestUtils.shutdown();
     }
 
