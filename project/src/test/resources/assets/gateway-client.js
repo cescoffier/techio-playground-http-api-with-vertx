@@ -36,7 +36,7 @@ function invoke(e) {
                     content += "&nbsp;&nbsp;" + key + ": " + value + "<br/>";
                 });
 
-                content += "<strong>Content:</strong><br/>&nbsp;&nbsp;" + res.body;
+                content += "<strong>Content:</strong><br/>&nbsp;&nbsp;" + res.body.replace("\n", "<br/>");
                 if (res["status-code"] < 400) {
                     $("#result").html("<p class='bg-success result'>" + content + "</p>");
                 } else {

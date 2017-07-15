@@ -92,7 +92,6 @@ public class VertxGateway {
                 String res = resp.result().body().toString();
                 String contentType = resp.result().getHeader("Content-Type");
                 if (contentType !=null  && contentType.contains("application/json")) {
-                    System.out.println("Encoding payload as json");
                     res = resp.result().bodyAsJsonObject().encodePrettily();
                 }
                 JsonObject payload = new JsonObject()
