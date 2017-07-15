@@ -12,7 +12,7 @@ function invoke(e) {
         params[id] = val;
     });
     
-    if (params.length > 0) {
+    if (Object.size(params) > 0) {
         req.query = params;
     }
 
@@ -56,6 +56,15 @@ function invoke(e) {
 
     e.preventDefault();
 }
+
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
 
 $( document ).ready(function() {
     $("#invoke").click(invoke);
