@@ -7,13 +7,13 @@ JSON is everywhere Today. So let's jump into the train too and produce a JSON re
 
 We are going to use this second approach to return something like:
 
-```javascript
+```json
 {
     "message": "hello"
 }
 ```
 
-This object can be easily created using: `new JsonObject().put("message", "hello")`. Then we just need to _encode_ this JSON structure into the HTTP response:
+This object can be easily created using: `new JsonObject().put("message", "hello")`. Then, we just need to _encode_ this JSON structure into the HTTP response:
 
 @[Producing JSON]({"stubs": ["src/main/java/io/vertx/playground/HttpServerJsonExample.java"], "command": "io.vertx.playground.HttpServerJsonExampleTest#test"})
 

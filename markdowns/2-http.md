@@ -10,9 +10,9 @@ Ok, now that we have our `vertx` instance, let's create a HTTP server. This is f
 
 @[Http Server Creation]({"stubs": ["src/main/java/io/vertx/playground/HttpServerExample.java"], "command": "io.vertx.playground.HttpServerExampleTest#test"})
 
-Running this code also call the server, so you can see what's returned by the server.
-
-Let's look at the server creation. We attach a request handler. A `Handler` is a method taking as parameter an event (here the HTTP request) and reacting to it (here we write the message to the response). A `Handler` does not _return_ a result, it provides its result in an asynchronous way. For instance, in our example, writing the HTTP response is handled asynchronously by Vert.x. 
+Let's look at the server creation. We attach a _request handler_. A `Handler` is a method taking as parameter an event
+ (here the HTTP request) and reacting to it (here we write the message to the response). A `Handler` does not _return_ a result, it provides its result in an asynchronous way. For instance, in our example, we write the HTTP response, sent 
+ asynchronously to the client by Vert.x.
 
 The request handler is called for each incoming HTTP request. We start seeing emerging the reactive flavor of this application: for every request, we react. 
 
