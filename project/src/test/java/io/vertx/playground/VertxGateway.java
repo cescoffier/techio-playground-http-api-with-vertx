@@ -69,6 +69,8 @@ public class VertxGateway {
         HttpRequest<Buffer> request = client.request(HttpMethod.valueOf(method), path
             + (queryString == null ? "" : "?" + queryString));
 
+        System.out.println("QS: " + queryString);
+
         Handler<AsyncResult<HttpResponse<Buffer>>> handler = (resp -> {
             HttpServerResponse response = rc.response();
             if (resp.failed()) {

@@ -16,6 +16,8 @@ function invoke(e) {
         req.query = params;
     }
 
+    console.dir("query", req.query);
+
     $.ajax({
         dataType: "json",
         method: "POST",
