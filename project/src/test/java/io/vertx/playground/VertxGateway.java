@@ -84,7 +84,7 @@ public class VertxGateway {
                     .put("status-code", resp.result().statusCode())
                     .put("status-message", resp.result().statusMessage())
                     .put("http-version", resp.result().version())
-                    .put("headers", headersToJson(request.headers()));
+                    .put("headers", headersToJson(resp.result().headers()));
                 response
                     .setStatusCode(200)
                     .end(payload.encodePrettily());
