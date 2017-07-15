@@ -11,7 +11,7 @@ public class HttpServerQueryExample {
        vertx.createHttpServer()
         .requestHandler(req -> {
             String name = req.getParam("name");
-            String message = "hello " + (name != null ? name : "world") + "!";
+            String message = "hello " + (name != null && ! name.trim().isEmpty() ? name : "world") + "!";
             JsonObject json = new JsonObject()
                 .put("message", message);
            req.response()
