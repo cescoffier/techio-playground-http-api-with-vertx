@@ -10,7 +10,7 @@ public class HttpServerQueryExampleTest {
         HttpServerQueryExample.main();
 
         TestUtils.awaitForServerStartup();
-        TestUtils.viewer("4-invocation-with-json.html");
+        TestUtils.viewer("4-invocation-with-query.html");
     }
 
     @After
