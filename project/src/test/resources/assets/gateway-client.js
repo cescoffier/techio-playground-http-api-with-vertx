@@ -15,9 +15,7 @@ function invoke(e) {
     if (Object.size(params) > 0) {
         req.query = params;
     }
-
-    console.dir("query", req.query);
-
+    
     $.ajax({
         dataType: "json",
         method: "POST",
