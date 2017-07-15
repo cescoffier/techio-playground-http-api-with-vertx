@@ -21,6 +21,7 @@ import io.vertx.ext.web.handler.StaticHandler;
 import io.vertx.playground.techio.Log;
 
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author <a href="http://escoffier.me">Clement Escoffier</a>
@@ -55,11 +56,18 @@ public class VertxGateway {
         String method = json.getString("method", "GET").toUpperCase();
         String path = json.getString("path", "/");
 
-        String query = json.getString("query");
+        JsonObject query = json.getJsonObject("query");
+        String queryString = null;
+        if (query != null) {
+            queryString = query.stream()
+                .map(entry -> entry.getKey() + "=" + entry.getValue().toString())
+                .collect(Collectors.joining("&"));
+        }
 
         JsonObject body = json.getJsonObject("body");
 
-        HttpRequest<Buffer> request = client.request(HttpMethod.valueOf(method), path + (query == null ? "" : "?" + query));
+        HttpRequest<Buffer> request = client.request(HttpMethod.valueOf(method), path
+            + (queryString == null ? "" : "?" + queryString));
 
         Handler<AsyncResult<HttpResponse<Buffer>>> handler = (resp -> {
             HttpServerResponse response = rc.response();

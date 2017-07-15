@@ -6,14 +6,14 @@ function invoke(e) {
     };
 
     var params = {};
-    $(".req-param").each(function (i) {
+    $(".req-query").each(function (i) {
         var val = $(this).val();
         var id = $(this).attr("id");
         params[id] = val;
     });
     
     if (params.length > 0) {
-        req.params = params;
+        req.query = params;
     }
 
     $.ajax({
