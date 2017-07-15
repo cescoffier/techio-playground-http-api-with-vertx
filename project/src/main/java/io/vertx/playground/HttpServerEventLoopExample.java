@@ -14,6 +14,7 @@ public class HttpServerEventLoopExample {
             String message = "hello " + (name != null ? name : "world") + "!";
             JsonObject json = new JsonObject()
                 .put("message", message)
+                .put("time", System.currentTimeMillis())
                 .put("thread", Thread.currentThread().getName());
            req.response()
                 .putHeader("Content-Type", "application/json; charset=UTF8")

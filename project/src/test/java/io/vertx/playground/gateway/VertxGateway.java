@@ -89,10 +89,13 @@ public class VertxGateway {
                         .put("reason", resp.cause().getMessage())
                         .encodePrettily());
             } else {
-                Buffer res = resp.result().body();
+                String res = resp.result().body().toString();
+                if (resp.result().getHeader("Content-Type").contains("application/json")) {
+                    res = resp.result().bodyAsJsonObject().encodePrettily();
+                }
                 JsonObject payload = new JsonObject()
                     .put("success", true)
-                    .put("body", res.toString())
+                    .put("body", res)
                     .put("status-code", resp.result().statusCode())
                     .put("status-message", resp.result().statusMessage())
                     .put("http-version", resp.result().version())
