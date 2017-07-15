@@ -16,8 +16,8 @@ function invoke(e) {
         .done(function(res) {
             var content = "";
             if (res.success) {
-                content = "<strong>Status:</strong> " + res["status-code"] + " "
-                    + res["status-message"]
+                content = "<strong>Status:</strong><br/>"
+                    + "&nbsp;&nbsp;" + res["status-code"] + " " + res["status-message"]
 
                     + "<br/><strong>Headers:</strong><br/>";
 
@@ -25,7 +25,7 @@ function invoke(e) {
                     content += "&nbsp;&nbsp;" + key + ": " + value + "<br/>";
                 });
 
-                content += "<strong>Content:</strong><br/>" + res.body;
+                content += "<strong>Content:</strong><br/>&nbsp;&nbsp;" + res.body;
                 if (res["status-code"] < 400) {
                     $("#result").html("<p class='bg-success result'>" + content + "</p>");
                 } else {
