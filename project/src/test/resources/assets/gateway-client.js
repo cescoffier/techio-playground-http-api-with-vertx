@@ -17,7 +17,11 @@ function invoke(e) {
             var content = "";
             if (res.success) {
                 content = "<strong>Status:</strong> " + res["status-code"] + " "
-                    + res["status-message"] + "<br/><strong>Content:</strong><br/>" + res.body;
+                    + res["status-message"]
+
+                    + "<br/><strong>Headers:</strong><br/>";
+                
+                content += "<br/><strong>Content:</strong><br/>" + res.body;
                 if (res["status-code"] < 400) {
                     $("#result").html("<p class='bg-success result'>" + content + "</p>");
                 } else {

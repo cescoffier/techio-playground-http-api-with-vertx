@@ -2,6 +2,7 @@ package io.vertx.playground;
 
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Handler;
+import io.vertx.core.MultiMap;
 import io.vertx.core.Vertx;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpMethod;
@@ -83,7 +84,7 @@ public class VertxGateway {
                     .put("status-code", resp.result().statusCode())
                     .put("status-message", resp.result().statusMessage())
                     .put("http-version", resp.result().version())
-                    .put("headers", Json.encode(resp.result().headers()));
+                    .put("headers", headersToJson(request.headers()));
                 response
                     .setStatusCode(200)
                     .end(payload.encodePrettily());
@@ -95,6 +96,12 @@ public class VertxGateway {
         } else {
             request.send(handler);
         }
+    }
+
+    private JsonObject headersToJson(MultiMap headers) {
+        JsonObject json = new JsonObject();
+        headers.forEach(e -> json.put(e.getKey(), e.getValue()));
+        return json;
     }
 
     public void close() {
