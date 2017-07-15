@@ -20,6 +20,8 @@ import io.vertx.ext.web.handler.CorsHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 import io.vertx.playground.techio.Log;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -48,6 +50,14 @@ public class VertxGateway {
             .listen(9000, ar -> Log.out("Gateway started on port <blue>%d</blue>", ar.result().actualPort()));
     }
 
+    private String encode(String s) {
+        try {
+            return URLEncoder.encode(s, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            return s;
+        }
+    }
+
     private void delegate(RoutingContext rc) {
         JsonObject json = rc.getBodyAsJson();
 
@@ -60,7 +70,7 @@ public class VertxGateway {
         String queryString = null;
         if (query != null) {
             queryString = query.stream()
-                .map(entry -> entry.getKey() + "=" + entry.getValue().toString())
+                .map(entry -> entry.getKey() + "=" + encode(entry.getValue().toString()))
                 .collect(Collectors.joining("&"));
         }
 
