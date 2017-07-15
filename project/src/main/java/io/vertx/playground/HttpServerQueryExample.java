@@ -15,7 +15,7 @@ public class HttpServerQueryExample {
             JsonObject json = new JsonObject()
                 .put("message", message);
            req.response()
-                .putHeader("content-type", "application/json; charset=UTF8")           
+                .putHeader("Content-Type", "application/json; charset=UTF8")
                 .end(json.encodePrettily());
         })
         .listen(8080);

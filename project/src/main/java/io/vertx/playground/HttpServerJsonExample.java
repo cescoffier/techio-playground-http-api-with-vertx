@@ -13,7 +13,7 @@ public class HttpServerJsonExample {
             JsonObject json = new JsonObject()
                 .put("message", "hello");
            req.response()
-                .putHeader("content-type", "application/json; charset=UTF8")           
+                .putHeader("Content-Type", "application/json; charset=UTF8")
                 .end(json.encodePrettily());
         })
         .listen(8080);

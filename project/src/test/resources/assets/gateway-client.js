@@ -20,8 +20,12 @@ function invoke(e) {
                     + res["status-message"]
 
                     + "<br/><strong>Headers:</strong><br/>";
-                
-                content += "<br/><strong>Content:</strong><br/>" + res.body;
+
+                $.each( res.headers, function( key, value ) {
+                    content += "&nbsp;&nbsp;" + key + ": " + value + "<br/>";
+                });
+
+                content += "<strong>Content:</strong><br/>" + res.body;
                 if (res["status-code"] < 400) {
                     $("#result").html("<p class='bg-success result'>" + content + "</p>");
                 } else {
