@@ -5,6 +5,17 @@ function invoke(e) {
         method : "GET"
     };
 
+    var params = {};
+    $(".req-param").each(function (i) {
+        var val = $(this).val();
+        var id = $(this).attr("id");
+        params[id] = val;
+    });
+    
+    if (params.length > 0) {
+        req.params = params;
+    }
+
     $.ajax({
         dataType: "json",
         method: "POST",

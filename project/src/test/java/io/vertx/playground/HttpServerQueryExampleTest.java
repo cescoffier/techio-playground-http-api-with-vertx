@@ -6,18 +6,15 @@ import org.junit.Test;
 public class HttpServerQueryExampleTest {
 
     @Test
-    public void test() {
-     HttpServerQueryExample.main();   
+    public void test() throws Exception {
+        HttpServerQueryExample.main();
 
-     TestUtils.awaitForServerStartup();
-     System.out.println("Invocation without parameter (http://localhost:8080)");
-     TestUtils.invoke();
-     System.out.println("Invocation with parameter (http://localhost:8080?name=vert.x)");
-     TestUtils.invoke("?name=vertx");
+        TestUtils.awaitForServerStartup();
+        TestUtils.viewer("4-invocation-with-json.html");
     }
 
     @After
-    public void tearDown() { 
+    public void tearDown() {
         TestUtils.shutdown();
     }
 

@@ -40,17 +40,11 @@ public class VertxGateway {
         router.route().handler(CorsHandler.create("*"));
         router.post("/gateway").handler(this::delegate);
         router.get("/ready").handler(rc -> rc.response().end("OK"));
-
-        router.route().handler(rc -> {
-            Log.out("Got request: <blue>%s</blue> <red>%s</red>", rc.request().rawMethod(), rc.request().path());
-            rc.next();
-        });
-
         router.get("/assets/*").handler(StaticHandler.create("assets"));
 
         this.vertx.createHttpServer()
             .requestHandler(router::accept)
-            .listen(9000, ar -> Log.out("Gateway ready on port <blue>%d</blue>", ar.result().actualPort()));
+            .listen(9000, ar -> Log.out("Gateway started on port <blue>%d</blue>", ar.result().actualPort()));
     }
 
     private void delegate(RoutingContext rc) {
