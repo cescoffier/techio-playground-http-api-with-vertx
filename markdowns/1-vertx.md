@@ -6,7 +6,7 @@ There are a two equally important points in this description: toolkit and reacti
 
 Firstly, Vert.x is a **toolkit**. Meaning, Vert.x is not an application server, nor a framework. Vert.x is a plain old jar file, so a Vert.x application is an application that uses this jar file. Vert.x does not define a packaging model, all Vert.x components are plain boring jar files. How does this impact you and your application? Let’s imagine you are using a build tool such as Maven or Gradle, to make your application a Vert.x application just add the `vertx-core` dependency. Wanna use another Vert.x components, just add it as a dependency. It’s simple, burden-less. Starting the application is a simple class with the `public static void main(String[] args)` entry point. No specific IDE or plugin to install to start using Vert.x.
 
-Then, Vert.x is reactive. Don't be confused by _Reactive_. They are many _Reactive_ things Today. Vert.x covers the 
+Then, Vert.x is reactive. Don't be confused by _Reactive_. There are many _Reactive_ things today. Vert.x covers the 
 whole reactive spectrum:
 
 * reactive system - an architectural style to build responsive distributed systems,
