@@ -2,12 +2,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.yourself</groupId>
-  <artifactId>java-project</artifactId>
+  <groupId>io.vertx.playground</groupId>
+  <artifactId>playground-vertx-http-endpoint-project</artifactId>
   <version>1.0.0</version>
 
-  <name>java-project</name>
-  <description>Add project description here</description>
+  <name>playground-vertx-http-endpoint-project</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
